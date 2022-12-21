@@ -4,24 +4,23 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 
-const TASKS = [
-  {
-    id: 1,
-    title: 'Mow the lawn',
-    isComplete: false,
-  },
-  {
-    id: 2,
-    title: 'Cook Pasta',
-    isComplete: true,
-  },
-];
-const kBaseUrl = 'http://localhost:3000';
+// const TASKS = [
+//   {
+//     id: 1,
+//     title: 'Mow the lawn',
+//     isComplete: false,
+//   },
+//   {
+//     id: 2,
+//     title: 'Cook Pasta',
+//     isComplete: true,
+//   },
+// ];
+const kBaseUrl = 'http://localhost:5000';
 
 const convertFromApi = (apiTask) => {
-  const {...rest} = apiTask;
-  const newTask = {...rest};
-  return newTask;
+  const { description, id, is_complete: isComplete, title } = apiTask;
+  return { description, id, isComplete, title };
 };
 
 const getAllTasksApi = () => {
@@ -35,7 +34,7 @@ const getAllTasksApi = () => {
 };
 
 const completeTaskApi = (id) => {
-  return axios.patch(`${kBaseUrl}/tasks/${id}/mark-complete`)
+  return axios.patch(`${kBaseUrl}/tasks/${id}/mark_complete`)
   .then(response => {
     return convertFromApi(response.data);
   })

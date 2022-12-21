@@ -12,6 +12,7 @@ const Task = ( props ) => {
       <button
         className={`tasks__item__toggle ${buttonClass}`}
         onClick={() => props.onCompleteTask(props.id)}>
+        {props.title}
       </button>
       <button className="tasks__item__remove button" onClick={() => props.onDeleteTask(props.id)}>x</button>
     </li>
